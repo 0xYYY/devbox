@@ -24,7 +24,7 @@ alias vim="nvim"
 alias ls="exa"
 alias l="exa -l"
 alias ll="exa -la"
-alias rankmirror="RUN reflector --country CA,CH,DE,FR,GB,JP,KR,SG,TW,US --protocol https --delay 1 --fastest 5 --save /etc/pacman.d/mirrorlist --verbose"
+alias rankmirror="reflector --country CA,CH,DE,FR,GB,ID,JP,KR,SG,TW,US --protocol https --delay 1 --fastest 5 --save /etc/pacman.d/mirrorlist --verbose"
 alias pubip="curl https://api.ipify.org"
 if command -v trash-put &> /dev/null; then
 	alias tp="trash-put"

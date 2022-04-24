@@ -83,7 +83,7 @@ RUN ./.miniconda3/bin/ipython locate
 RUN mv ipython_config.py .ipython/profile_default/
 
 # Solidity
-RUN pip install solc-select
+RUN ./.miniconda3/bin/pip install solc-select
 RUN solc-select install $(solc-select install | tail -1)
 RUN curl -L https://foundry.paradigm.xyz | bash
 RUN foundryup

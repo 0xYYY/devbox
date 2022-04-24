@@ -32,13 +32,17 @@ cmp.setup({
             },
         }),
     },
-    documentation = {
-        border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
-        winhighlight = "NormalFloat:NormalFloat,FloatBorder:NormalFloat",
-        maxwidth = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
-        maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
+    window = {
+        documentation = {
+            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+            winhighlight = "NormalFloat:NormalFloat,FloatBorder:NormalFloat",
+            maxwidth = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
+            maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
+        },
     },
     mapping = {
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),

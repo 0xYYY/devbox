@@ -84,7 +84,7 @@ require("rust-tools").setup({ server = { on_attach = on_attach, capabilities = c
 
 -- lspkind
 require("lspkind").init({
-    with_text = false,
+    mode = "symbol",
     symbol_map = {
         File = "",
         Module = "",

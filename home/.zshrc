@@ -1,11 +1,12 @@
 ## Oh My Zsh
+
 export ZSH=$HOME/.oh-my-zsh
+
 # auto-update
 zstyle ':omz:update' mode auto
 
 # plugins
-plugins=(git tmux extract fd ripgrep zoxide nvm cargo yarn)
-NVM_AUTOLOAD=1
+plugins=(git tmux extract fd fnm ripgrep rust zoxide yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -23,10 +24,8 @@ alias vim="nvim"
 alias ls="exa"
 alias l="exa -l"
 alias ll="exa -la"
-
 alias rankmirror="RUN reflector --country CA,CH,DE,FR,GB,JP,KR,SG,TW,US --protocol https --delay 1 --fastest 5 --save /etc/pacman.d/mirrorlist --verbose"
 alias pubip="curl https://api.ipify.org"
-
 if command -v trash-put &> /dev/null; then
 	alias tp="trash-put"
 fi
@@ -83,5 +82,5 @@ eval "$(starship init zsh)"
 # conda
 eval "$($HOME/.miniconda3/bin/conda shell.zsh hook)"
 
-# svm
-[ -f "$HOME/.svm/svm.sh" ] && source "$HOME/.svm/svm.sh"
+# fnm
+eval "$(fnm env --use-on-cd)"

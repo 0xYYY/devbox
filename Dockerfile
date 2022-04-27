@@ -94,4 +94,8 @@ RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 RUN nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 RUN rm .config/nvim/packer_install.lua
 
+# Tmux
+RUN git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+RUN ~/.tmux/plugins/tpm/scripts/install_plugins.sh --tmux-echo >/dev/null 2>&1
+
 CMD ["/usr/bin/zsh"]

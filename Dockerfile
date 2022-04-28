@@ -9,8 +9,8 @@ RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 RUN reflector --country CA,CH,DE,FR,GB,IN,JP,KR,SG,TW,US --protocol https --delay 1 --fastest 5 --save /etc/pacman.d/mirrorlist --verbose
 
 # Insall packages
-RUN pacman -S bat bottom colordiff curlie clang cmake cmatrix dog dust exa fd figlet fzf git \
-    git-delta git-lfs github-cli gitui glow httpie jq lolcat man-db man-pages neovim nyancat \
+RUN pacman -S bat bottom choose colordiff curlie clang cmake cmatrix dog dust exa fd figlet fzf \
+    git git-delta git-lfs github-cli gitui glow httpie jq lolcat man-db man-pages neovim nyancat \
     openssh pacman-contrib procs ripgrep rust-analyzer sd starship shfmt sudo tar tmux tokei \
     trash-cli unzip xsv zip zoxide zsh zsh-completions \
     --noconfirm

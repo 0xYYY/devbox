@@ -11,7 +11,7 @@ RUN reflector --country CA,CH,DE,FR,GB,IN,JP,KR,SG,TW,US --protocol https --dela
 # Insall packages
 RUN pacman -S bat bottom choose colordiff curlie clang cmake cmatrix dog dust exa fd figlet fzf \
     git git-delta git-lfs github-cli gitui glow httpie jq lolcat man-db man-pages neovim nyancat \
-    openssh pacman-contrib procs ripgrep rust-analyzer sd starship shfmt sudo tar tmux tokei \
+    openssh pacman-contrib pueue procs ripgrep rust-analyzer sd starship shfmt sudo tar tmux tokei \
     trash-cli unzip xsv zip zoxide zsh zsh-completions \
     --noconfirm
 
@@ -52,6 +52,7 @@ COPY --chown=dev home/ ./
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"\
     "" --unattended
 RUN mv .zshrc.pre-oh-my-zsh .zshrc
+RUN git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 
 # Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh

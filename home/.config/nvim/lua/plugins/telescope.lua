@@ -4,11 +4,13 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
     defaults = {
+        sorting_strategy = "ascending",
         prompt_prefix = "❯ ",
         selection_caret = "❯ ",
         entry_prefix = "  ",
         layout_strategy = "flex",
         layout_config = {
+            prompt_postion = "top",
             height = 0.8,
             width = 0.8,
             flex = {

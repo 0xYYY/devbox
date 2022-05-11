@@ -6,6 +6,10 @@ export ZSH=$HOME/.oh-my-zsh
 zstyle ':omz:update' mode auto
 
 # plugins
+# zvm
+function zvm_config() {
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+}
 plugins=(git tmux extract fd fnm ripgrep rust zoxide yarn)
 
 source $ZSH/oh-my-zsh.sh
@@ -84,3 +88,6 @@ eval "$($HOME/.miniconda3/bin/conda shell.zsh hook)"
 
 # fnm
 eval "$(fnm env --use-on-cd)"
+
+# zvm
+zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search")

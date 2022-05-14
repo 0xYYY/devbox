@@ -104,7 +104,7 @@ alias mamba="micromamba"
 mamba activate
 
 # fnm
-# eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd)"
 
 # zvm
 zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search")

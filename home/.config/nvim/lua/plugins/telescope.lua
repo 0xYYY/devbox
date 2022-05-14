@@ -10,7 +10,7 @@ require("telescope").setup({
         entry_prefix = "  ",
         layout_strategy = "flex",
         layout_config = {
-            prompt_postion = "top",
+            prompt_position = "top",
             height = 0.8,
             width = 0.8,
             flex = {

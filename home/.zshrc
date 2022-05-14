@@ -24,7 +24,7 @@ export EDITOR=nvim
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # alias
-alias vim="nvim"
+alias v="nvim"
 alias ls="exa"
 alias l="exa -l"
 alias ll="exa -la"
@@ -84,10 +84,27 @@ tsc () {
 eval "$(starship init zsh)"
 
 # conda
-eval "$($HOME/.miniconda3/bin/conda shell.zsh hook)"
+# eval "$($HOME/.miniconda3/bin/conda shell.zsh hook)"
+
+# mamba
+export MAMBA_EXE="$HOME/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="$HOME/.micromamba";
+__mamba_setup="$($HOME/.local/bin/micromamba shell hook --shell zsh --prefix $HOME/.micromamba 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    if [ -f "$HOME/.micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "$HOME/.micromamba/etc/profile.d/micromamba.sh"
+    else
+        export  PATH="$HOME/.micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+    fi
+fi
+unset __mamba_setup
+alias mamba="micromamba"
+mamba activate
 
 # fnm
-eval "$(fnm env --use-on-cd)"
+# eval "$(fnm env --use-on-cd)"
 
 # zvm
 zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search")

@@ -3,7 +3,7 @@ local cmd = vim.cmd
 local fn = vim.fn
 
 -- Program host
-vim.g.python3_host_prog = fn.expand("$HOME/.miniconda3/bin/python")
+vim.g.python3_host_prog = fn.expand("$HOME/.micromamba/bin/python")
 
 -- Appearance
 opt.termguicolors = true

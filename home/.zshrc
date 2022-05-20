@@ -17,6 +17,10 @@ source $ZSH/oh-my-zsh.sh
 
 ## General
 
+# bindkeys
+bindkey "^P" up-line-or-beginning-search
+bindkey "^N" down-line-or-beginning-search
+
 # environment variables
 export USER=dev
 export SHELL=/usr/bin/zsh
@@ -105,6 +109,9 @@ mamba activate
 
 # fnm
 eval "$(fnm env --use-on-cd)"
+
+# autin
+eval "$(atuin init zsh)"
 
 # zvm
 zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search")

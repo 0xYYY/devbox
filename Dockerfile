@@ -12,31 +12,31 @@ RUN reflector --country CA,CH,DE,FR,GB,IN,JP,KR,SG,TW,US --protocol https --dela
 RUN pacman -S curlie clang cmake cmatrix figlet fzf git git-lfs github-cli glow httpie jq lolcat \
     man-db man-pages neovim nyancat openssh pacman-contrib rust-analyzer shfmt sudo tar tmux \
     trash-cli unzip zip zsh zsh-completions --noconfirm
-RUN pacman -S bat bottom choose dog dust exa fd git-delta gitui jless pueue procs ripgrep sd \
+RUN pacman -S autin bat bottom choose dog dust exa fd git-delta gitui jless pueue procs ripgrep sd \
     starship tokei xsv zoxide --noconfirm
 
-# Create a user solely for installing yay and AUR packages
+# Create a user solely for installing paru and AUR packages
 # Create user "aur"
-# ARG user=aur
-# RUN useradd --system --create-home $user \
-#   && echo "$user ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/$user
-# USER $user
-# WORKDIR /home/$user
+ARG user=aur
+RUN useradd --system --create-home $user \
+  && echo "$user ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/$user
+USER $user
+WORKDIR /home/$user
 
-# # Yay
-# RUN git clone https://aur.archlinux.org/yay.git \
-#   && cd yay \
-#   && makepkg -sri --needed --noconfirm \
-#   && cd .. \
-#   && rm -rf .cache yay
+# # Paru
+RUN git clone https://aur.archlinux.org/paru.git \
+  && cd paru \
+  && makepkg -sri --needed --noconfirm \
+  && cd .. \
+  && rm -rf .cache paru
 
-# RUN yay -S fnm-bin --noconfirm
+RUN paru -S fnm-bin --noconfirm
 
 # # Delete AUR user and change back to root
-# USER root
-# WORKDIR /root
-# RUN userdel -r $user
-# RUN rm /etc/sudoers.d/$user
+USER root
+WORKDIR /root
+RUN userdel -r $user
+RUN rm /etc/sudoers.d/$user
 
 # Create a sudo user "dev"
 RUN useradd --create-home --groups wheel --shell /bin/zsh dev
@@ -53,6 +53,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     "" --unattended
 RUN mv .zshrc.pre-oh-my-zsh .zshrc
 RUN git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode
+RUN atuin import auto
 
 # Tmux
 RUN git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
@@ -64,7 +65,6 @@ RUN sh rustup.sh --verbose -y --no-modify-path
 RUN rm rustup.sh
 RUN $HOME/.cargo/bin/rustup component add rust-src
 RUN $HOME/.cargo/bin/rustup toolchain install nightly
-RUN $HOME/.cargo/bin/cargo install fnm paru
 
 # Golang
 # modified from https://github.com/udhos/update-golang

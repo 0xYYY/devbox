@@ -13,7 +13,7 @@ RUN pacman -S curlie clang cmake cmatrix figlet fzf git git-lfs github-cli glow 
     man-db man-pages neovim nyancat openssh pacman-contrib rust-analyzer shfmt sudo tar tmux \
     trash-cli unzip zip zsh zsh-completions --noconfirm
 RUN pacman -S autin bat bottom choose dog dust exa fd git-delta gitui jless pueue procs ripgrep sd \
-    starship tokei xsv zoxide --noconfirm
+    starship tokei tuc xsv zoxide --noconfirm
 
 # Create a user solely for installing paru and AUR packages
 # Create user "aur"
